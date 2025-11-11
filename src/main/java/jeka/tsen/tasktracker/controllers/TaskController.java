@@ -5,6 +5,7 @@ import jeka.tsen.tasktracker.mappers.TaskMapper;
 import jeka.tsen.tasktracker.model.Task;
 import jeka.tsen.tasktracker.services.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class TaskController {
 
 
     @PutMapping
+    @Transactional
     public TaskDto createTask(
             @PathVariable("task_list_id") UUID taskListId,
             @RequestBody TaskDto taskDto
@@ -54,6 +56,7 @@ public class TaskController {
 
 
     @PutMapping(path = "/{task_id}")
+    @Transactional
     public TaskDto updateTask(@PathVariable("task_list_id") UUID taskListId,
                               @PathVariable("task_id") UUID taskId,
                               @RequestBody TaskDto taskDto
@@ -66,6 +69,7 @@ public class TaskController {
 
 
     @DeleteMapping(path = "/{task_id}")
+    @Transactional
     public void deleteTask(@PathVariable("task_list_id") UUID taskListId,
                            @PathVariable("task_id") UUID taskId) {
 
